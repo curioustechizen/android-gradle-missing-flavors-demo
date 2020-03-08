@@ -38,4 +38,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    implementation project(':leaf')
+    implementation project(':intermediate-1')
+    implementation project(':intermediate-2')
 }
