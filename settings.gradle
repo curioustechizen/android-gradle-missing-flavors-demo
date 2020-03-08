@@ -1,0 +1,5 @@
+include ':intermediate-2'
+include ':intermediate-1'
+include ':leaf'
+include ':app'
+rootProject.name = "Gradle missing flavors"
