@@ -21,6 +21,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "target"
+    productFlavors {
+        emulator {
+            dimension "target"
+            resValue("string", "name_leaf_module", "Leaf module Emulator")
+        }
+        realdevice {
+            dimension "target"
+            resValue("string", "name_leaf_module", "Leaf module Real Device")
+        }
+    }
 }
 
 dependencies {
