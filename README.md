@@ -18,12 +18,6 @@ The app itself is a shell. It has no activities, no functionality and almost no 
 
 To demonstrate how flavors work, I've created some string resources (using gradle's `resValue` feature) in every flavor, in every module that does care about the flavor. When I build an APK for a particular flavor, I can inspect the string resource in APK analyzer to figure out which variant was used.
 
-In this commit that you're seeing, the output was as follows:
+In this commit that you're seeing, there's a build error.
 
-The output of emulator variant:
-
-![Emulator variant](screenshots/app-emulator-debug-apk.png)
-
-The output of the realdevice variant
-
-![Real device variant](screenshots/app-realdevice-debug-apk.png)
+[!Build Error](screenshots/build_error.png)
