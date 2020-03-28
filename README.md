@@ -20,33 +20,11 @@ To demonstrate how flavors work, I've created some string resources (using gradl
 
 ### In this commit
 
-In this commit, you see that we use the `missingDimensionStrategy` DSL to select a default flavor when a consuming module does not include a flavor dimension that the consumed module does. In particular in both `intermediate-` modules, we have the following in build.gradle
+In this commit, I've basically introduced the same flavor dimensions and flavors in the intermediate modules. I know we started off saying these modules don't care about flavors, but this is the only correct way to do it. This is because the intermediate modules are both of the following
 
-```
-missingDimensionStrategy 'target', 'emulator'
-```
+  - Providers for a module that has a flavor dimension
+  - Consumers of another module that also has the same flavor dimension
 
-If you generate the APKs with these changes, you see everything works as expected. Here's what the emulatorDebug flavor looks like:
+**Note:** If you don't have these intermediate flavors setup that I demonstrate in this repo, you can absolutely use `missingDimensionStrategy` or `matchingFallback` depending on your situation.
 
-![emulator flavor with missingDimensionStrategy](screenshots/app-emulator-debug-apk-missing-dimension-strategy.png)
-
-And this is the realdeviceDebug variant
-
-![realdevice flavor with missingDimensionStrategy](screenshots/app-realdevice-debug-apk-missing-dimension-strategy.png)
-
-### What's wrong?
-
-Though things seem to work as expected, there's still something wrong. The clue is in the "Build Variants" window. Select `realdeviceDebug` variant and you'll see this:
-
-![Build variants window error](screenshots/build-variants-error.png)
-
-And here's a warning message in the build output:
-
-> Module 'leaf' has variant 'realdeviceDebug' selected, but the modules ['intermediate-1', 'intermediate-2'] depend on variant 'emulatorDebug'
-
-The problem is this: When you chose `realdeviceDebug` variant for `app` module, the same variant is selected for `leaf` module. However, for the intermediate modules, we specified we want to use `emulator` flavor.
-
-This is not a problem for us because we explicitly stated that the intermediate flavors don't know or care about flavors. But, how do you fix those warnings?
-
-We'll explore this in future commits.
-
+I extracted the flavor config to a separate file for use in intermediate flavors. See `flavors.gradle`

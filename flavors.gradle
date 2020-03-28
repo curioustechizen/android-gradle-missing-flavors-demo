@@ -1,0 +1,11 @@
+android {
+    flavorDimensions "target"
+    productFlavors {
+        emulator {
+            dimension "target"
+        }
+        realdevice {
+            dimension "target"
+        }
+    }
+}
